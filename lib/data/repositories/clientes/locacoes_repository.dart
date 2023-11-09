@@ -127,9 +127,6 @@ class LocacoesRepository with ChangeNotifier {
       options: Options(headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $_token'}),
     );
 
-    print('ta aqui');
-    print(response.data);
-
     List dataList = response.data['items'];
 
     List<AtivoUsuariosLocacao> locacoesList = dataList

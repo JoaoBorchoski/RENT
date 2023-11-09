@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
@@ -23,44 +25,44 @@ class _AceitarTermosPageState extends State<AceitarTermosPage> {
   TermoUso termoUsoAceito = TermoUso();
 
   Future<void> _registerAccount(Map<String, dynamic> data) async {
-    try {
-      Provider.of<UserRepository>(context, listen: false).register(data).then((value) async {
-        if (value != "") {
-          termoUsoAceito.userId = value;
-          _getIpModeloDispositivo();
-        } else {
-          return showDialog(
-            context: context,
-            builder: (context) {
-              return AppPopErrorDialog(
-                message: 'Email já cadastrado!',
-              );
-            },
-          ).then(
-            (value) => {
-              if (!value)
-                {
-                  Navigator.of(context).pushReplacementNamed('/'),
-                }
-            },
-          );
-        }
-      });
-    } on AuthException catch (error) {
-      return showDialog(
-        context: context,
-        builder: (context) {
-          return AppPopErrorDialog(message: error.toString());
-        },
-      );
-    } catch (error) {
-      return showDialog(
-        context: context,
-        builder: (context) {
-          return AppPopErrorDialog(message: 'Ocorreu um erro inesperado!');
-        },
-      );
-    }
+    // try {
+    //   Provider.of<UserRepository>(context, listen: false).register(data).then((value) async {
+    //     if (value != "") {
+    //       termoUsoAceito.userId = value;
+    //       _getIpModeloDispositivo();
+    //     } else {
+    //       return showDialog(
+    //         context: context,
+    //         builder: (context) {
+    //           return AppPopErrorDialog(
+    //             message: 'Email já cadastrado!',
+    //           );
+    //         },
+    //       ).then(
+    //         (value) => {
+    //           if (!value)
+    //             {
+    //               Navigator.of(context).pushReplacementNamed('/'),
+    //             }
+    //         },
+    //       );
+    //     }
+    //   });
+    // } on AuthException catch (error) {
+    //   return showDialog(
+    //     context: context,
+    //     builder: (context) {
+    //       return AppPopErrorDialog(message: error.toString());
+    //     },
+    //   );
+    // } catch (error) {
+    //   return showDialog(
+    //     context: context,
+    //     builder: (context) {
+    //       return AppPopErrorDialog(message: 'Ocorreu um erro inesperado!');
+    //     },
+    //   );
+    // }
   }
 
   Future<void> _registarAceitoTermo() async {
@@ -125,18 +127,25 @@ class _AceitarTermosPageState extends State<AceitarTermosPage> {
         child: Column(
           children: [
             Text("Termos de Aceitação"),
-            Text("Bem-vindo! Antes de prosseguir com o uso de nossos serviços, é importante que você leia e aceite nossos termos e condições. Ao utilizar nosso aplicativo/website/serviço, você está concordando com os seguintes termos:"),
+            Text(
+                "Bem-vindo! Antes de prosseguir com o uso de nossos serviços, é importante que você leia e aceite nossos termos e condições. Ao utilizar nosso aplicativo/website/serviço, você está concordando com os seguintes termos:"),
             Text("Uso do Serviço:"),
-            Text("Ao utilizar nosso serviço, você concorda em fazê-lo apenas para fins legítimos. Você não deve utilizar o serviço para qualquer atividade ilegal, fraudulenta, prejudicial ou não autorizada."),
+            Text(
+                "Ao utilizar nosso serviço, você concorda em fazê-lo apenas para fins legítimos. Você não deve utilizar o serviço para qualquer atividade ilegal, fraudulenta, prejudicial ou não autorizada."),
             Text("Propriedade Intelectual:"),
-            Text("Todo o conteúdo presente em nosso serviço, incluindo, mas não limitado a, textos, gráficos, logotipos, ícones, imagens, clipes de áudio, downloads digitais e compilações de dados, é propriedade exclusiva da nossa empresa e está protegido pelas leis de propriedade intelectual aplicáveis. Você não tem permissão para copiar, distribuir, modificar, exibir, reproduzir, publicar ou criar trabalhos derivados a partir de qualquer conteúdo encontrado em nosso serviço, a menos que tenha recebido autorização expressa por escrito da nossa parte."),
+            Text(
+                "Todo o conteúdo presente em nosso serviço, incluindo, mas não limitado a, textos, gráficos, logotipos, ícones, imagens, clipes de áudio, downloads digitais e compilações de dados, é propriedade exclusiva da nossa empresa e está protegido pelas leis de propriedade intelectual aplicáveis. Você não tem permissão para copiar, distribuir, modificar, exibir, reproduzir, publicar ou criar trabalhos derivados a partir de qualquer conteúdo encontrado em nosso serviço, a menos que tenha recebido autorização expressa por escrito da nossa parte."),
             Text("Privacidade:"),
-            Text("Respeitamos sua privacidade e tratamos seus dados pessoais de acordo com nossa política de privacidade. Ao utilizar nosso serviço, você concorda com a coleta, uso e divulgação de suas informações pessoais conforme descrito em nossa política de privacidade."),
+            Text(
+                "Respeitamos sua privacidade e tratamos seus dados pessoais de acordo com nossa política de privacidade. Ao utilizar nosso serviço, você concorda com a coleta, uso e divulgação de suas informações pessoais conforme descrito em nossa política de privacidade."),
             Text("Limitação de Responsabilidade:"),
-            Text("Nosso serviço é fornecido no estado em que se encontra, e não fazemos representações ou garantias de qualquer tipo, expressas ou implícitas, sobre a disponibilidade, confiabilidade, adequação ou precisão do serviço. Em nenhuma circunstância seremos responsáveis por quaisquer danos diretos, indiretos, consequenciais, especiais ou punitivos decorrentes do uso ou incapacidade de uso do serviço."),
+            Text(
+                "Nosso serviço é fornecido no estado em que se encontra, e não fazemos representações ou garantias de qualquer tipo, expressas ou implícitas, sobre a disponibilidade, confiabilidade, adequação ou precisão do serviço. Em nenhuma circunstância seremos responsáveis por quaisquer danos diretos, indiretos, consequenciais, especiais ou punitivos decorrentes do uso ou incapacidade de uso do serviço."),
             Text("Modificações nos Termos:"),
-            Text("Podemos modificar estes termos a qualquer momento, mediante aviso prévio ou atualização no serviço. É responsabilidade sua revisar regularmente os termos atualizados. O uso contínuo do serviço após a publicação de quaisquer modificações constitui sua aceitação dessas modificações."),
-            Text("Ao clicar em Aceitar ou ao continuar a usar nosso serviço, você reconhece que leu, entendeu e concordou com estes termos e condições. Se você não concorda com estes termos, por favor, não utilize nosso serviço."),
+            Text(
+                "Podemos modificar estes termos a qualquer momento, mediante aviso prévio ou atualização no serviço. É responsabilidade sua revisar regularmente os termos atualizados. O uso contínuo do serviço após a publicação de quaisquer modificações constitui sua aceitação dessas modificações."),
+            Text(
+                "Ao clicar em Aceitar ou ao continuar a usar nosso serviço, você reconhece que leu, entendeu e concordou com estes termos e condições. Se você não concorda com estes termos, por favor, não utilize nosso serviço."),
             Text("Obrigado por escolher nossos serviços e desejamos uma ótima experiência!"),
             CheckboxListTile(
               title: Text('Aceito os termos e condições'),

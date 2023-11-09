@@ -45,7 +45,6 @@ class _LocacoesListPageState extends State<LocacoesListPage> {
         .listByClienteId(_query, _pageSize, _page, ['ASC', 'ASC']).then(
       (value) {
         locacoesList = value;
-        print(value);
         setState(() {
           _isLastPage = locacoesList.length < _pageSize;
           _isLoading = false;

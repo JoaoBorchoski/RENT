@@ -17,7 +17,7 @@ class SuggestionModelCategoria {
 
   factory SuggestionModelCategoria.fromJson(Categorias json) {
     return SuggestionModelCategoria(
-      value: json.clienteId ?? '',
+      value: json.id ?? '',
       label: json.nome ?? '',
       nome: json.nome ?? '',
       icone: json.icone ?? '',

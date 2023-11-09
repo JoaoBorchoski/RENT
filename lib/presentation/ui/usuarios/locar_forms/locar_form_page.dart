@@ -31,7 +31,7 @@ class _LocarFormPageState extends State<LocarFormPage> {
   final _formKey1 = GlobalKey<FormState>();
   final _formKey2 = GlobalKey<FormState>();
   final _formKey3 = GlobalKey<FormState>();
-  final bool _isLoading = false;
+  bool _isLoading = false;
 
   int activeStep = 0;
   int upperBound = 4;
@@ -289,6 +289,9 @@ class _LocarFormPageState extends State<LocarFormPage> {
                         child: ElevatedButton(
                           onPressed: () async {
                             Navigator.of(context).pop();
+                            setState(() {
+                              _isLoading = true;
+                            });
                             await submit(
                               context,
                               ativo,
@@ -314,12 +317,17 @@ class _LocarFormPageState extends State<LocarFormPage> {
                               locacaoConvidados,
                               () {
                                 setState(() {
+                                  // _isLoading = true;
                                   activeStep++;
                                   headerText = HeaderSelector.headerTextSelection(activeStep);
                                   checkNextButtonIcon();
                                 });
                               },
-                            );
+                            ).then((value) => {
+                                  setState(() {
+                                    _isLoading = false;
+                                  })
+                                });
                           },
                           child: Text('Sim'),
                         ),

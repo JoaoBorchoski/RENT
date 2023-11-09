@@ -126,7 +126,8 @@ class _UsuariosFormPageState extends State<UsuariosFormPage> {
                     ],
                   );
                 },
-              ).then((value) => value ? Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false) : retorno = value);
+              ).then((value) =>
+                value ? Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false) : retorno = value);
 
         return retorno;
       },
@@ -281,7 +282,8 @@ class _UsuariosFormPageState extends State<UsuariosFormPage> {
       controllerValue: _controllers.cidadeId!,
       controllerLabel: _controllers.cidadeNomeCidade!,
       isRequired: true,
-      itemsCallback: (pattern) async => Provider.of<CidadeRepository>(context, listen: false).select(pattern, _controllers.estadoId!.text),
+      itemsCallback: (pattern) async =>
+          Provider.of<CidadeRepository>(context, listen: false).select(pattern, _controllers.estadoId!.text),
     );
   }
 
@@ -335,7 +337,8 @@ class _UsuariosFormPageState extends State<UsuariosFormPage> {
 
   Future<void> cep(String userInputCep) async {
     if (userInputCep.length == 10) {
-      final cep = await Provider.of<CepRepository>(context, listen: false).getByCep(userInputCep.replaceAll('-', '').replaceAll('.', ''));
+      final cep = await Provider.of<CepRepository>(context, listen: false)
+          .getByCep(userInputCep.replaceAll('-', '').replaceAll('.', ''));
       _controllers.endereco?.text = (cep.logradouro ?? '').toUpperCase();
       _controllers.estadoId?.text = cep.estadoId!;
       _controllers.estadoUf?.text = cep.estadoUf!;
@@ -347,11 +350,15 @@ class _UsuariosFormPageState extends State<UsuariosFormPage> {
   }
 
   Future<void> _loadDataEmail(String email) async {
-    await Provider.of<UsuariosRepository>(context, listen: false).getByEmail(email).then((usuarios) => _populateController(usuarios));
+    await Provider.of<UsuariosRepository>(context, listen: false)
+        .getByEmail(email)
+        .then((usuarios) => _populateController(usuarios));
   }
 
   Future<void> _loadData(String id) async {
-    await Provider.of<UsuariosRepository>(context, listen: false).get(id).then((usuarios) => _populateController(usuarios));
+    await Provider.of<UsuariosRepository>(context, listen: false)
+        .get(id)
+        .then((usuarios) => _populateController(usuarios));
   }
 
   Future<void> _populateController(Usuarios usuarios) async {
@@ -415,7 +422,8 @@ class _UsuariosFormPageState extends State<UsuariosFormPage> {
             context: context,
             builder: (context) {
               return AppPopSuccessDialog(
-                message: _controllers.id!.text == '' ? 'Registro criado com sucesso!' : 'Registro atualizado com sucesso!',
+                message:
+                    _controllers.id!.text == '' ? 'Registro criado com sucesso!' : 'Registro atualizado com sucesso!',
               );
             },
           ).then((value) => Navigator.of(context).pushReplacementNamed('/home'));

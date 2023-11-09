@@ -31,10 +31,7 @@ class CepRepository with ChangeNotifier {
       final response = await dio.post(
         url,
         data: data,
-        options: Options(headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $_token'
-        }),
+        options: Options(headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $_token'}),
       );
 
       if (response.statusCode == 200) {
@@ -47,10 +44,7 @@ class CepRepository with ChangeNotifier {
     final response = await dio.put(
       '$url/${data['id']!}',
       data: data,
-      options: Options(headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_token'
-      }),
+      options: Options(headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $_token'}),
     );
 
     if (response.statusCode == 200) {
@@ -80,10 +74,7 @@ class CepRepository with ChangeNotifier {
     final response = await dio.post(
       url,
       data: data,
-      options: Options(headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_token'
-      }),
+      options: Options(headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $_token'}),
     );
 
     List dataList = response.data['items'];
@@ -115,16 +106,12 @@ class CepRepository with ChangeNotifier {
 
     final response = await dio.get(
       url,
-      options: Options(headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_token'
-      }),
+      options: Options(headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $_token'}),
     );
 
     if (response.statusCode == 200) {
       if (response.data == null) {
-        throw Exception(
-            'Cep não localizado.\n\nInvorme o Cep novamente ou localize a área manuamente no mapa.');
+        throw Exception('Cep não localizado.\n\nInvorme o Cep novamente ou localize a área manuamente no mapa.');
       } else {
         Map data = response.data;
         cep.id = data['id'];
@@ -149,18 +136,16 @@ class CepRepository with ChangeNotifier {
 
     final url = '${AppConstants.apiUrl}/ceps/by-cep/$cepString';
 
+    print(cepString);
+
     final response = await dio.get(
       url,
-      options: Options(headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_token'
-      }),
+      options: Options(headers: {'Content-Type': 'application/json'}),
     );
 
     if (response.statusCode == 200) {
       if (response.data == null) {
-        throw Exception(
-            'Cep não localizado.\n\nInvorme o Cep novamente ou localize a área manuamente no mapa.');
+        throw Exception('Cep não localizado.\n\nInvorme o Cep novamente ou localize a área manuamente no mapa.');
       } else {
         Map data = response.data;
         cep.id = data['id'];
@@ -185,10 +170,7 @@ class CepRepository with ChangeNotifier {
 
     final response = await dio.get(
       url,
-      options: Options(headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_token'
-      }),
+      options: Options(headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $_token'}),
     );
 
     List<SuggestionModelSelect> suggestions = [];
@@ -218,10 +200,7 @@ class CepRepository with ChangeNotifier {
 
       final response = await dio.delete(
         url,
-        options: Options(headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $_token'
-        }),
+        options: Options(headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $_token'}),
       );
 
       if (response.statusCode == null) {

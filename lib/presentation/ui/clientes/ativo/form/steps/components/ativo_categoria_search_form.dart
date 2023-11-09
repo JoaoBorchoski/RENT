@@ -74,6 +74,7 @@ class _AtivoCategoriaSearchFormState extends State<AtivoCategoriaSearchForm> {
                       suggestions = List<SuggestionModelCategoria>.from(
                         data.map((model) => SuggestionModelCategoria.fromJson(model)),
                       );
+
                       return Future.value(suggestions
                           .map((e) => {
                                 'value': e.value,

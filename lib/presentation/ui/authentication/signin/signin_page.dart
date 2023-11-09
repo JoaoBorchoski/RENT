@@ -310,7 +310,6 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
     } on AuthException catch (error) {
       _showErrorDialog(error.toString());
     } catch (error) {
-      print(error);
       _showErrorDialog('Ocorreu um erro inesperado!');
     }
 

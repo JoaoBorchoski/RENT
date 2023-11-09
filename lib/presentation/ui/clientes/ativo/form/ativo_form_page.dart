@@ -29,7 +29,7 @@ class _AtivoFormPageState extends State<AtivoFormPage> {
   final _formKey1 = GlobalKey<FormState>();
   final _formKey2 = GlobalKey<FormState>();
   final _formKey3 = GlobalKey<FormState>();
-  final bool _isLoading = false;
+  bool _isLoading = false;
 
   int activeStep = 0;
   int upperBound = 4;
@@ -252,6 +252,9 @@ class _AtivoFormPageState extends State<AtivoFormPage> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
+                              setState(() {
+                                _isLoading = true;
+                              });
                               submit(
                                 context,
                                 Ativo(
@@ -284,6 +287,9 @@ class _AtivoFormPageState extends State<AtivoFormPage> {
                                 _ativoImagensDeletar,
                               ).then((value) {
                                 Navigator.of(context).pushNamedAndRemoveUntil('/ativos', (route) => false);
+                                setState(() {
+                                  _isLoading = false;
+                                });
                               });
                             },
                             child: Text('Sim'),

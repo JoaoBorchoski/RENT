@@ -32,7 +32,7 @@ class _AtivoListPageState extends State<AtivoListPage> with SingleTickerProvider
   late bool _hasError;
   late bool _isLoading;
   late List<Ativo> _cards;
-  late TabController _tabController;
+  TabController? _tabController;
   late List<Categorias> _categorias;
 
   @override
@@ -54,7 +54,7 @@ class _AtivoListPageState extends State<AtivoListPage> with SingleTickerProvider
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 

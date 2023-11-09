@@ -66,20 +66,20 @@ Future<void> submit(
     });
   } on AuthException catch (error) {
     print(error);
-    // return showDialog(
-    //   context: context,
-    //   builder: (context) {
-    //     return AppPopErrorDialog(message: error.toString());
-    //   },
-    // );
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AppPopErrorDialog(message: error.toString());
+      },
+    );
   } catch (error) {
     print(error);
-    // return showDialog(
-    //   context: context,
-    //   builder: (context) {
-    //     return AppPopErrorDialog(message: 'Ocorreu um erro inesperado!');
-    //   },
-    // );
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AppPopErrorDialog(message: 'Ocorreu um erro inesperado!');
+      },
+    );
   }
 }
 
